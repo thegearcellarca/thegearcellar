@@ -1,0 +1,97 @@
+backend:
+  name: github
+  repo: thegearcellarca/thegearcellar
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "electric"
+    label: "Electric Guitars"
+    folder: "_electric"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Make", name: "make", widget: "string", hint: "e.g. Tokai, Fender, Gibson" }
+      - { label: "Model", name: "model", widget: "string" }
+      - { label: "Year", name: "year", widget: "string", hint: "e.g. 1975 or c.1980" }
+      - { label: "Cover Photo", name: "photo", widget: "image", required: false }
+      - label: "Specs"
+        name: "specs"
+        widget: "list"
+        fields:
+          - { label: "Label", name: "label", widget: "string", hint: "e.g. Body, Neck, Pickups" }
+          - { label: "Value", name: "value", widget: "string" }
+      - { label: "History", name: "history", widget: "markdown", hint: "Full history and provenance writeup" }
+
+  - name: "acoustic"
+    label: "Acoustic Guitars"
+    folder: "_acoustic"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Make", name: "make", widget: "string" }
+      - { label: "Model", name: "model", widget: "string" }
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Cover Photo", name: "photo", widget: "image", required: false }
+      - label: "Specs"
+        name: "specs"
+        widget: "list"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Value", name: "value", widget: "string" }
+      - { label: "History", name: "history", widget: "markdown" }
+
+  - name: "amps"
+    label: "Amplifiers"
+    folder: "_amps"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Make", name: "make", widget: "string" }
+      - { label: "Model", name: "model", widget: "string" }
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Cover Photo", name: "photo", widget: "image", required: false }
+      - label: "Specs"
+        name: "specs"
+        widget: "list"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Value", name: "value", widget: "string" }
+      - { label: "History", name: "history", widget: "markdown" }
+
+  - name: "effects"
+    label: "Pedals & Effects"
+    folder: "_effects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Make", name: "make", widget: "string" }
+      - { label: "Model", name: "model", widget: "string" }
+      - { label: "Year", name: "year", widget: "string" }
+      - { label: "Cover Photo", name: "photo", widget: "image", required: false }
+      - label: "Specs"
+        name: "specs"
+        widget: "list"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Value", name: "value", widget: "string" }
+      - { label: "History", name: "history", widget: "markdown" }
+
+  - name: "reviews"
+    label: "Reviews & Posts"
+    folder: "_reviews"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["Electric", "Acoustic", "Amps", "Pedals & Effects", "Japan", "Comparison", "First Impressions"] }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Cover Photo", name: "photo", widget: "image", required: false }
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "Short summary shown on the homepage" }
+      - { label: "Body", name: "body", widget: "markdown", hint: "Full review text. Paste YouTube URLs on their own line to embed them." }
