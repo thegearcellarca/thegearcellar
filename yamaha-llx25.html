@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yamaha LLX-25 — The Guitar Yamaha Never Made — The Gear Cellar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0e0d0b; --ink2: #1a1814; --rule: #2a2720;
+    --amber: #c9a84c; --cream: #f0e8d8; --muted: #888070; --muted2: #554f44;
+    --serif: 'Playfair Display', Georgia, serif;
+    --mono: 'DM Mono', 'Courier New', monospace;
+    --body: 'Lora', Georgia, serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--ink); color: var(--cream); font-family: var(--body); font-size: 16px; line-height: 1.75; overflow-x: hidden; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(14,13,11,0.96); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--rule); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .nav-logo { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+  .nav-the { font-family: var(--mono); font-size: 8px; letter-spacing: 0.5em; color: var(--amber); line-height: 1; opacity: 0.85; }
+  .nav-name { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--cream); letter-spacing: 0.04em; line-height: 1; }
+  .nav-back { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--amber); }
+
+  .breadcrumb { padding: 16px 40px; border-bottom: 0.5px solid var(--rule); display: flex; gap: 8px; align-items: center; }
+  .breadcrumb a, .breadcrumb span { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--amber); }
+  .breadcrumb .current { color: var(--muted); }
+
+  /* HERO SPLIT */
+  .instrument-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 85vh; border-bottom: 0.5px solid var(--rule); }
+
+  /* GALLERY */
+  .instrument-gallery { background: var(--ink2); border-right: 0.5px solid var(--rule); display: flex; flex-direction: column; }
+  .gallery-main { flex: 1; overflow: hidden; position: relative; cursor: pointer; }
+  .gallery-main img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: opacity 0.3s; }
+  .gallery-main img.hidden { opacity: 0; position: absolute; top: 0; left: 0; }
+  .gallery-main img.visible { opacity: 1; }
+  .gallery-thumbs { display: flex; border-top: 0.5px solid var(--rule); }
+  .gallery-thumb { flex: 1; aspect-ratio: 1; overflow: hidden; cursor: pointer; border-right: 0.5px solid var(--rule); opacity: 0.5; transition: opacity 0.2s; }
+  .gallery-thumb:last-child { border-right: none; }
+  .gallery-thumb.active { opacity: 1; }
+  .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-count { position: absolute; bottom: 16px; right: 16px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; color: var(--muted2); background: rgba(14,13,11,0.85); padding: 4px 10px; border: 0.5px solid var(--rule); }
+
+  .instrument-info { padding: 48px; display: flex; flex-direction: column; overflow-y: auto; }
+  .instrument-category { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; }
+
+  /* Ghost title treatment */
+  .instrument-eyebrow { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--muted); margin-bottom: 4px; }
+  .instrument-title { font-family: var(--serif); font-size: 34px; font-weight: 600; color: var(--cream); line-height: 1.15; margin-bottom: 6px; }
+  .instrument-subtitle { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted2); margin-bottom: 20px; }
+
+  /* Mystery badge */
+  .mystery-note { background: rgba(201,168,76,0.07); border: 0.5px solid rgba(201,168,76,0.25); padding: 12px 16px; margin-bottom: 24px; }
+  .mystery-note p { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; color: var(--amber); line-height: 1.7; }
+
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .badge { font-family: var(--mono); font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border: 0.5px solid; display: inline-block; }
+  .badge-acoustic { color: #a07838; border-color: rgba(160,120,56,0.3); background: rgba(160,120,56,0.07); }
+  .badge-taiwan { color: #c06040; border-color: rgba(192,96,64,0.3); background: rgba(192,96,64,0.07); }
+  .badge-mystery { color: var(--amber); border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.07); }
+
+  .specs-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 0.5px solid var(--rule); }
+  table.specs { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+  table.specs tr { border-bottom: 0.5px solid var(--rule); }
+  table.specs tr:last-child { border-bottom: none; }
+  table.specs td { padding: 9px 0; font-size: 13px; vertical-align: top; }
+  table.specs td:first-child { color: var(--muted2); width: 36%; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; }
+  table.specs td:last-child { color: var(--cream); }
+  .specs-note { font-family: var(--mono); font-size: 9px; color: var(--amber); letter-spacing: 0.06em; }
+
+  .history-section, .media-section { border-top: 0.5px solid var(--rule); padding: 56px 40px; }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 24px; }
+  .history-body { max-width: 740px; }
+  .history-body p { font-size: 15px; color: #b8b0a0; line-height: 1.9; margin-bottom: 22px; }
+  .history-body p:last-child { margin-bottom: 0; }
+  .history-body strong { color: var(--cream); font-weight: 500; }
+  .history-body em { color: var(--amber); font-style: italic; }
+
+  .media-placeholder { background: var(--ink2); border: 0.5px solid var(--rule); padding: 48px; text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); line-height: 2.2; }
+
+  .instrument-nav { border-top: 0.5px solid var(--rule); padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .instrument-nav a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .instrument-nav a:hover { color: var(--amber); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .breadcrumb { padding: 14px 20px; }
+    .instrument-hero { grid-template-columns: 1fr; }
+    .instrument-gallery { min-height: 70vw; border-right: none; border-bottom: 0.5px solid var(--rule); }
+    .instrument-info { padding: 28px 20px; }
+    .history-section, .media-section { padding: 36px 20px; }
+    .instrument-nav { padding: 20px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg width="48" height="40" viewBox="0 0 48 40" fill="none">
+      <rect x="0" y="0" width="5" height="40" rx="1.5" fill="#c9a84c"/>
+      <line x1="5" y1="3.5" x2="44" y2="3.5" stroke="#c9a84c" stroke-width="0.5"/>
+      <line x1="5" y1="9.5" x2="44" y2="9.5" stroke="#c9a84c" stroke-width="0.7"/>
+      <line x1="5" y1="16" x2="44" y2="16" stroke="#c9a84c" stroke-width="0.95"/>
+      <line x1="5" y1="23" x2="44" y2="23" stroke="#c9a84c" stroke-width="1.2"/>
+      <line x1="5" y1="30.5" x2="44" y2="30.5" stroke="#c9a84c" stroke-width="1.5"/>
+      <line x1="5" y1="37" x2="44" y2="37" stroke="#c9a84c" stroke-width="1.85"/>
+      <rect x="43" y="0" width="3" height="40" rx="0.5" fill="#c9a84c" opacity="0.45"/>
+    </svg>
+    <div>
+      <div class="nav-the">THE</div>
+      <div class="nav-name">Gear Cellar</div>
+    </div>
+  </a>
+  <a class="nav-back" href="index.html#collection">&larr; Back to Collection</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span style="color:var(--rule);padding:0 4px">/</span>
+  <a href="index.html#collection">Collection</a>
+  <span style="color:var(--rule);padding:0 4px">/</span>
+  <a href="index.html#collection">Acoustic</a>
+  <span style="color:var(--rule);padding:0 4px">/</span>
+  <span class="current">Yamaha LLX-25</span>
+</div>
+
+<div class="instrument-hero">
+
+  <!-- GALLERY -->
+  <div class="instrument-gallery">
+    <div class="gallery-main" id="gallery-main">
+      <img src="yamaha-llx25-main.jpg" alt="Yamaha LLX-25 acoustic guitar hung on wall" id="img-0" class="visible">
+      <img src="yamaha-llx25-interior.jpg" alt="Yamaha LLX-25 interior label showing LLX-25 106010" id="img-1" class="hidden">
+      <span class="photo-count" id="photo-count">1 / 2</span>
+    </div>
+    <div class="gallery-thumbs">
+      <div class="gallery-thumb active" onclick="showImg(0)" id="thumb-0">
+        <img src="yamaha-llx25-main.jpg" alt="Main view">
+      </div>
+      <div class="gallery-thumb" onclick="showImg(1)" id="thumb-1">
+        <img src="yamaha-llx25-interior.jpg" alt="Interior label">
+      </div>
+    </div>
+  </div>
+
+  <div class="instrument-info">
+    <p class="instrument-category">Acoustic Guitar &middot; Taiwan &middot; Early 1980s</p>
+    <p class="instrument-eyebrow">The guitar Yamaha never made</p>
+    <h1 class="instrument-title">Yamaha LLX-25</h1>
+    <p class="instrument-subtitle">Serial No. 106010 &middot; Handmade in Taiwan &middot; No Electronics</p>
+
+    <div class="mystery-note">
+      <p>Yamaha has confirmed: this model does not exist in their records. The LLX-25 was never officially catalogued, never sold through normal channels, and cannot be accounted for. It exists. We have it. Make of that what you will.</p>
+    </div>
+
+    <div class="badge-row">
+      <span class="badge badge-acoustic">Acoustic</span>
+      <span class="badge badge-taiwan">Taiwan</span>
+      <span class="badge badge-mystery">Undocumented</span>
+    </div>
+
+    <p class="specs-label">Specifications</p>
+    <table class="specs">
+      <tr><td>Make / Model</td><td>Yamaha &mdash; LLX-25 <span class="specs-note">(undocumented)</span></td></tr>
+      <tr><td>Serial No.</td><td>106010</td></tr>
+      <tr><td>Origin</td><td>Handmade in Taiwan, Republic of China</td></tr>
+      <tr><td>Era</td><td>Early 1980s (c.1980&ndash;1984)</td></tr>
+      <tr><td>Top</td><td>Solid Spruce</td></tr>
+      <tr><td>Back &amp; Sides</td><td>Rosewood</td></tr>
+      <tr><td>Neck</td><td>Mahogany</td></tr>
+      <tr><td>Fingerboard</td><td>Ebony, cross inlays</td></tr>
+      <tr><td>Body shape</td><td>Dreadnought / LL jumbo</td></tr>
+      <tr><td>Electronics</td><td>None &mdash; despite "X" suffix <span class="specs-note">(anomalous)</span></td></tr>
+      <tr><td>Rosette</td><td>Multi-ring abalone</td></tr>
+      <tr><td>Condition</td><td>Excellent for age, all original</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div class="history-section">
+  <p class="section-label">Provenance &amp; History</p>
+  <div class="history-body">
+    <p>In 1978, Yamaha made a quiet and largely undocumented decision: they would begin producing a second line of their prestigious L-series acoustic guitars outside of Japan. The location was Taiwan, and the experiment was built on a simple premise &mdash; <strong>could Taiwanese craftsmen build instruments of the same quality as Yamaha's celebrated Japanese production?</strong> The answer, it turned out, was yes.</p>
+
+    <p>This Taiwan L-series ran in parallel with the Japanese line as a dedicated export range, comprising models including the L-5A, L-10A, L-15A, L-20A and L-25A. All were fully solid construction, handbuilt by craftsmen who &mdash; by most accounts &mdash; poured a particular intensity into the work. <em>As one longtime Yamaha collector put it: "When it comes to personality, the Taiwan-made models win. Perhaps it's the aging of the wood. Perhaps the Taiwanese craftsmen wanted to show the Japanese owners exactly what they were capable of."</em> Production ceased in 1984 &mdash; a year before the Japanese L-series ended &mdash; leaving a narrow, well-defined window of manufacture.</p>
+
+    <p>And then there is this guitar. The <strong>LLX-25</strong> &mdash; a model that, according to Yamaha's own records, does not exist. Contact Yamaha with the model number stamped clearly on the interior brace, serial 106010, and they will tell you there is no such model. The "X" suffix in Yamaha's naming convention denotes an electro-acoustic instrument &mdash; and yet this guitar has no electronics, no pickup cavity, no endpin jack. Whatever the X meant here, it wasn't that.</p>
+
+    <p>The most plausible explanation is that this guitar represents a <strong>prototype or special commission</strong> from the Taiwan outsourcing programme &mdash; a model built during a period when Yamaha was still working out exactly what this export range would be, potentially intended to receive electronics that were never fitted, or built to a specification that never made it to the official catalogue. The "LL" double-L prefix suggests it was conceived as the jumbo-body variant of the standard L-25. Whatever its intended path, this example arrived fully acoustic, fully handmade, and entirely without a paper trail.</p>
+
+    <p>It is, in every meaningful sense, <strong>the guitar Yamaha never made</strong> &mdash; except that they did, and here it is.</p>
+  </div>
+</div>
+
+<!-- MEDIA -->
+<div class="media-section">
+  <p class="section-label">Audio &amp; Video</p>
+  <div class="media-placeholder">
+    Video and audio demos coming soon<br>
+    Subscribe to The Gear Cellar on YouTube to be notified
+  </div>
+</div>
+
+<div class="instrument-nav">
+  <a href="index.html#collection">&larr; Back to Collection</a>
+  <a href="index.html">The Gear Cellar Home</a>
+</div>
+
+<script>
+  function showImg(idx) {
+    const imgs = document.querySelectorAll('.gallery-main img');
+    const thumbs = document.querySelectorAll('.gallery-thumb');
+    const count = document.getElementById('photo-count');
+    imgs.forEach((img, i) => {
+      img.className = i === idx ? 'visible' : 'hidden';
+      img.style.position = i === idx ? 'relative' : 'absolute';
+    });
+    thumbs.forEach((t, i) => t.className = 'gallery-thumb' + (i === idx ? ' active' : ''));
+    count.textContent = (idx + 1) + ' / ' + imgs.length;
+  }
+</script>
+
+</body>
+</html>
