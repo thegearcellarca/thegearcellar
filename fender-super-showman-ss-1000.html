@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fender Super Showman SS-1000 — The Gear Cellar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0e0d0b; --ink2: #1a1814; --rule: #2a2720;
+    --amber: #c9a84c; --cream: #f0e8d8; --muted: #888070; --muted2: #554f44;
+    --serif: 'Playfair Display', Georgia, serif;
+    --mono: 'DM Mono', 'Courier New', monospace;
+    --body: 'Lora', Georgia, serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--ink); color: var(--cream); font-family: var(--body); font-size: 16px; line-height: 1.75; overflow-x: hidden; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(14,13,11,0.96); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--rule); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .nav-logo { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+  .nav-the { font-family: var(--mono); font-size: 8px; letter-spacing: 0.5em; color: var(--amber); line-height: 1; opacity: 0.85; }
+  .nav-name { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--cream); letter-spacing: 0.04em; line-height: 1; }
+  .nav-back { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--amber); }
+
+  .breadcrumb { padding: 16px 40px; border-bottom: 0.5px solid var(--rule); display: flex; gap: 8px; align-items: center; }
+  .breadcrumb a, .breadcrumb span { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--amber); }
+  .breadcrumb .current { color: var(--muted); }
+
+  .instrument-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; border-bottom: 0.5px solid var(--rule); }
+  .instrument-photo { background: var(--ink2); border-right: 0.5px solid var(--rule); overflow: hidden; position: relative; }
+  .instrument-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .photo-count { position: absolute; bottom: 16px; right: 16px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; color: var(--muted2); background: rgba(14,13,11,0.85); padding: 4px 10px; border: 0.5px solid var(--rule); }
+
+  .instrument-info { padding: 48px; display: flex; flex-direction: column; }
+  .instrument-category { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; }
+  .instrument-title { font-family: var(--serif); font-size: 36px; font-weight: 600; color: var(--cream); line-height: 1.15; margin-bottom: 6px; }
+  .instrument-subtitle { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted2); margin-bottom: 28px; }
+
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .badge { font-family: var(--mono); font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border: 0.5px solid; display: inline-block; }
+  .badge-amp { color: #7a9a70; border-color: rgba(122,154,112,0.3); background: rgba(122,154,112,0.07); }
+  .badge-usa { color: #8898b0; border-color: rgba(136,152,176,0.3); background: rgba(136,152,176,0.07); }
+
+  .specs-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 0.5px solid var(--rule); }
+  table.specs { width: 100%; border-collapse: collapse; margin-bottom: 36px; }
+  table.specs tr { border-bottom: 0.5px solid var(--rule); }
+  table.specs tr:last-child { border-bottom: none; }
+  table.specs td { padding: 9px 0; font-size: 13px; vertical-align: top; }
+  table.specs td:first-child { color: var(--muted2); width: 36%; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; }
+  table.specs td:last-child { color: var(--cream); }
+
+  .history-section, .media-section { border-top: 0.5px solid var(--rule); padding: 56px 40px; }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 24px; }
+  .history-body { max-width: 740px; }
+  .history-body p { font-size: 15px; color: #b8b0a0; line-height: 1.9; margin-bottom: 22px; }
+  .history-body p:last-child { margin-bottom: 0; }
+  .history-body strong { color: var(--cream); font-weight: 500; }
+
+  .media-placeholder { background: var(--ink2); border: 0.5px solid var(--rule); padding: 48px; text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); line-height: 2.2; }
+
+  .instrument-nav { border-top: 0.5px solid var(--rule); padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .instrument-nav a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .instrument-nav a:hover { color: var(--amber); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .breadcrumb { padding: 14px 20px; }
+    .instrument-hero { grid-template-columns: 1fr; }
+    .instrument-photo { min-height: 70vw; border-right: none; border-bottom: 0.5px solid var(--rule); }
+    .instrument-info { padding: 28px 20px; }
+    .history-section, .media-section { padding: 36px 20px; }
+    .instrument-nav { padding: 20px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg width="48" height="40" viewBox="0 0 48 40" fill="none">
+      <rect x="0" y="0" width="5" height="40" rx="1.5" fill="#c9a84c"/>
+      <line x1="5" y1="3.5" x2="44" y2="3.5" stroke="#c9a84c" stroke-width="0.5"/>
+      <line x1="5" y1="9.5" x2="44" y2="9.5" stroke="#c9a84c" stroke-width="0.7"/>
+      <line x1="5" y1="16" x2="44" y2="16" stroke="#c9a84c" stroke-width="0.95"/>
+      <line x1="5" y1="23" x2="44" y2="23" stroke="#c9a84c" stroke-width="1.2"/>
+      <line x1="5" y1="30.5" x2="44" y2="30.5" stroke="#c9a84c" stroke-width="1.5"/>
+      <line x1="5" y1="37" x2="44" y2="37" stroke="#c9a84c" stroke-width="1.85"/>
+      <rect x="43" y="0" width="3" height="40" rx="0.5" fill="#c9a84c" opacity="0.45"/>
+    </svg>
+    <div>
+      <div class="nav-the">THE</div>
+      <div class="nav-name">Gear Cellar</div>
+    </div>
+  </a>
+  <a class="nav-back" href="index.html#collection">&larr; Back to Collection</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span style="color:var(--rule);padding:0 4px">/</span>
+  <a href="index.html#collection">Collection</a>
+  <span style="color:var(--rule);padding:0 4px">/</span>
+  <a href="index.html#collection">Amplifiers</a>
+  <span style="color:var(--rule);padding:0 4px">/</span>
+  <span class="current">Super Showman SS-1000</span>
+</div>
+
+<div class="instrument-hero">
+  <div class="instrument-photo">
+    <img src="fender-super-showman-ss-1000.jpeg" alt="Fender Super Showman SS-1000 preamplifier head in black tolex">
+    <span class="photo-count">1 of 1 &mdash; more photos coming</span>
+  </div>
+  <div class="instrument-info">
+    <p class="instrument-category">Preamplifier &middot; USA</p>
+    <h1 class="instrument-title">Super Showman SS-1000</h1>
+    <p class="instrument-subtitle">Solid State &middot; Made in USA &middot; Black Tolex</p>
+    <div class="badge-row">
+      <span class="badge badge-amp">Amp</span>
+      <span class="badge badge-usa">USA</span>
+    </div>
+    <p class="specs-label">Specifications</p>
+    <table class="specs">
+      <tr><td>Make / Model</td><td>Fender &mdash; Super Showman SS-1000</td></tr>
+      <tr><td>Type</td><td>Solid-state preamplifier head</td></tr>
+      <tr><td>Manufactured</td><td>1969&ndash;1971</td></tr>
+      <tr><td>Channels</td><td>3 (parallel, with Master Volume)</td></tr>
+      <tr><td>Channel 1</td><td>Volume, Bass, Mid, Treble, Fuzz</td></tr>
+      <tr><td>Channel 2</td><td>Volume, Bass, Mid, Treble, Dimension IV Sound Expander</td></tr>
+      <tr><td>Channel 3</td><td>Volume, Bass, Mid, Treble, Speed, Intensity, Reverberation</td></tr>
+      <tr><td>Effects</td><td>Built-in fuzz, oil-can Dimension IV delay, spring reverb, tremolo</td></tr>
+      <tr><td>Additional</td><td>Built-in E-tuner, Master Volume, Ground Selector</td></tr>
+      <tr><td>Chassis</td><td>49 transistors, 19 diodes</td></tr>
+      <tr><td>Finish</td><td>Black tolex, silver/aluminium control panel</td></tr>
+      <tr><td>Designed by</td><td>Seth Lover &amp; Richard Chauncey Evans</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="history-section">
+  <p class="section-label">Provenance &amp; History</p>
+  <div class="history-body">
+    <p>By 1969, CBS had owned Fender for five years and was determined to prove it could do what Leo couldn&rsquo;t &mdash; build a solid-state amplifier worthy of the Fender name. The <strong>Super Showman SS-1000</strong> was their most ambitious attempt. It was also, depending on who you ask, their most spectacular miscalculation.</p>
+    <p>To design it, they hired <strong>Seth Lover</strong> &mdash; the man who invented the humbucking pickup at Gibson &mdash; along with former Gibson engineer Richard Chauncey Evans. The pedigree was impeccable. The result was genuinely extraordinary, and the market ignored it almost completely.</p>
+    <p>The concept was ahead of its time in ways that only became obvious later. The SS-1000 was purely a preamp &mdash; a &ldquo;brain,&rdquo; in Fender&rsquo;s own language &mdash; with no power amplification of its own. That lived in the speaker cabinets. The XFL-1000 held four 12-inch speakers driven by two 70-watt solid-state power amps; the XFL-2000 ran eight 10-inch speakers at the same wattage. The idea was that you could keep adding powered cabinets until you had the coverage you needed, with the power amp physically as close to the speakers as possible. It was, in other words, the architecture that would eventually become standard in live sound &mdash; powered speakers, distributed amplification, modular scaling. Fender had it in 1969. The full rig with two cabinets cost $1,695. Nobody bought it.</p>
+    <p>The preamp itself is a genuinely bewildering piece of engineering. Three channels, each with its own character. Channel one runs Volume, Bass, Mid, Treble, and Fuzz &mdash; the first fuzz circuit ever built into a Fender amplifier. Channel two replaces the fuzz with the <strong>Dimension IV Sound Expander</strong>, an oil-can delay effect built around Tel Ray&rsquo;s electromechanical technology, with a small motor running continuously inside the chassis. Channel three handles Tremolo and Reverb, with its own Speed, Intensity, and Reverberation controls. A Master Volume ties all three together. There is also a built-in E-tuner, which in 1969 was a genuine novelty. The whole chassis runs on 49 transistors and 19 diodes, not a tube in sight.</p>
+    <p>The entire solid-state line was discontinued in 1971. Two years. The Super Showman was too expensive, too complicated, and too far ahead of where guitarists&rsquo; heads were at. Players wanted tubes. They still do. The SS-1000 became one of the great footnotes &mdash; a machine that was right about almost everything and rewarded for none of it.</p>
+    <p>This example is the preamp head only, sitting in the collection without its powered cabinets. It doesn&rsquo;t need them to make its point.</p>
+  </div>
+</div>
+
+<div class="media-section">
+  <p class="section-label">Audio &amp; Video</p>
+  <div class="media-placeholder">
+    Video and audio demos coming soon<br>
+    Subscribe to The Gear Cellar on YouTube to be notified
+  </div>
+</div>
+
+<div class="instrument-nav">
+  <a href="index.html#collection">&larr; Back to Collection</a>
+  <a href="index.html">The Gear Cellar Home</a>
+</div>
+
+</body>
+</html>
