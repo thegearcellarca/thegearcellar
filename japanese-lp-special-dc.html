@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LP Special Double Cutaway — The Gear Cellar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #0e0d0b; --ink2: #1a1814; --rule: #2a2720;
+    --amber: #c9a84c; --cream: #f0e8d8; --muted: #888070; --muted2: #554f44;
+    --serif: 'Playfair Display', Georgia, serif;
+    --mono: 'DM Mono', 'Courier New', monospace;
+    --body: 'Lora', Georgia, serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--ink); color: var(--cream); font-family: var(--body); font-size: 16px; line-height: 1.75; overflow-x: hidden; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(14,13,11,0.96); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--rule); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .nav-logo { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+  .nav-the { font-family: var(--mono); font-size: 8px; letter-spacing: 0.5em; color: var(--amber); line-height: 1; opacity: 0.85; }
+  .nav-name { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--cream); letter-spacing: 0.04em; line-height: 1; }
+  .nav-back { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--amber); }
+
+  .breadcrumb { padding: 16px 40px; border-bottom: 0.5px solid var(--rule); display: flex; gap: 8px; align-items: center; }
+  .breadcrumb a, .breadcrumb span { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--amber); }
+  .breadcrumb .current { color: var(--muted); }
+
+  .instrument-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; border-bottom: 0.5px solid var(--rule); }
+  .instrument-photo { background: var(--ink2); border-right: 0.5px solid var(--rule); overflow: hidden; position: relative; }
+  .instrument-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .photo-count { position: absolute; bottom: 16px; right: 16px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; color: var(--muted2); background: rgba(14,13,11,0.85); padding: 4px 10px; border: 0.5px solid var(--rule); }
+
+  .instrument-info { padding: 48px; display: flex; flex-direction: column; }
+  .instrument-category { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 10px; }
+  .instrument-title { font-family: var(--serif); font-size: 36px; font-weight: 600; color: var(--cream); line-height: 1.15; margin-bottom: 6px; }
+  .instrument-subtitle { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted2); margin-bottom: 28px; }
+
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .badge { font-family: var(--mono); font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border: 0.5px solid; display: inline-block; }
+  .badge-electric { color: #5a90c0; border-color: rgba(90,144,192,0.3); background: rgba(90,144,192,0.07); }
+  .badge-japan { color: #c06040; border-color: rgba(192,96,64,0.3); background: rgba(192,96,64,0.07); }
+
+  .specs-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 0.5px solid var(--rule); }
+  table.specs { width: 100%; border-collapse: collapse; margin-bottom: 36px; }
+  table.specs tr { border-bottom: 0.5px solid var(--rule); }
+  table.specs tr:last-child { border-bottom: none; }
+  table.specs td { padding: 9px 0; font-size: 13px; vertical-align: top; }
+  table.specs td:first-child { color: var(--muted2); width: 36%; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; }
+  table.specs td:last-child { color: var(--cream); }
+
+  .history-section, .media-section { border-top: 0.5px solid var(--rule); padding: 56px 40px; }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 24px; }
+  .history-body { max-width: 740px; }
+  .history-body p { font-size: 15px; color: #b8b0a0; line-height: 1.9; margin-bottom: 22px; }
+  .history-body p:last-child { margin-bottom: 0; }
+  .history-body strong { color: var(--cream); font-weight: 500; }
+
+  .media-placeholder { background: var(--ink2); border: 0.5px solid var(--rule); padding: 48px; text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); line-height: 2.2; }
+
+  .instrument-nav { border-top: 0.5px solid var(--rule); padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .instrument-nav a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .instrument-nav a:hover { color: var(--amber); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .breadcrumb { padding: 14px 20px; }
+    .instrument-hero { grid-template-columns: 1fr; }
+    .instrument-photo { min-height: 70vw; border-right: none; border-bottom: 0.5px solid var(--rule); }
+    .instrument-info { padding: 28px 20px; }
+    .history-section, .media-section { padding: 36px 20px; }
+    .instrument-nav { padding: 20px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg width="48" height="40" viewBox="0 0 48 40" fill="none">
+      <rect x="0" y="0" width="5" height="40" rx="1.5" fill="#c9a84c"/>
+      <line x1="5" y1="3.5" x2="44" y2="3.5" stroke="#c9a84c" stroke-width="0.5"/>
+      <line x1="5" y1="9.5" x2="44" y2="9.5" stroke="#c9a84c" stroke-width="0.7"/>
+      <line x1="5" y1="16" x2="44" y2="16" stroke="#c9a84c" stroke-width="0.95"/>
+      <line x1="5" y1="23" x2="44" y2="23" stroke="#c9a84c" stroke-width="1.2"/>
+      <line x1="5" y1="30.5" x2="44" y2="30.5" stroke="#c9a84c" stroke-width="1.5"/>
+      <line x1="5" y1="37" x2="44" y2="37" stroke="#c9a84c" stroke-width="1.85"/>
+      <rect x="43" y="0" width="3" height="40" rx="0.5" fill="#c9a84c" opacity="0.45"/>
+    </svg>
+    <div>
+      <div class="nav-the">THE</div>
+      <div class="nav-name">Gear Cellar</div>
+    </div>
+  </a>
+  <a class="nav-back" href="index.html#collection">&larr; Back to Collection</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span style="color:var(--rule);padding:0 4px">/</span>
+  <a href="index.html#collection">Collection</a>
+  <span style="color:var(--rule);padding:0 4px">/</span>
+  <a href="index.html#collection">Electric</a>
+  <span style="color:var(--rule);padding:0 4px">/</span>
+  <span class="current">LP Special Double Cutaway</span>
+</div>
+
+<div class="instrument-hero">
+  <div class="instrument-photo">
+    <img src="japanese-lp-special-dc.jpeg" alt="Unknown maker Japanese LP Special Double Cutaway in Cherry finish">
+    <span class="photo-count">1 of 1 &mdash; more photos coming</span>
+  </div>
+  <div class="instrument-info">
+    <p class="instrument-category">Electric Guitar &middot; Japan</p>
+    <h1 class="instrument-title">LP Special Double Cutaway</h1>
+    <p class="instrument-subtitle">Unknown Maker &middot; Made in Japan &middot; Cherry</p>
+    <div class="badge-row">
+      <span class="badge badge-electric">Electric</span>
+      <span class="badge badge-japan">Japan</span>
+    </div>
+    <p class="specs-label">Specifications</p>
+    <table class="specs">
+      <tr><td>Make / Model</td><td>Unknown &mdash; attr. Chushin Gakki</td></tr>
+      <tr><td>Origin</td><td>Japan, c.1973&ndash;1977</td></tr>
+      <tr><td>Body</td><td>Mahogany, double cutaway slab</td></tr>
+      <tr><td>Neck</td><td>Mahogany, set neck, 24&frac34;&quot; scale</td></tr>
+      <tr><td>Fingerboard</td><td>Rosewood, round dot inlays</td></tr>
+      <tr><td>Truss rod cover</td><td>Bell-shaped, 3-screw</td></tr>
+      <tr><td>Pickups</td><td>2&times; P-90 style soapbar</td></tr>
+      <tr><td>Controls</td><td>2&times; Volume, 2&times; Tone</td></tr>
+      <tr><td>Bridge</td><td>Wraparound stud tailpiece</td></tr>
+      <tr><td>Finish</td><td>Cherry</td></tr>
+      <tr><td>Serial No.</td><td>None</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="history-section">
+  <p class="section-label">Provenance &amp; History</p>
+  <div class="history-body">
+    <p>Gibson&rsquo;s 1959&ndash;60 <strong>Les Paul Special</strong> in its double-cutaway form is one of the most honest guitars the company ever made. No carved top, no maple cap, no pretension &mdash; just a slab of mahogany, two P-90s, and the kind of lightweight accessibility that the single-cut Special never quite achieved. It lasted barely two years in production before Gibson redesigned it into the SG. Which is probably why, fifteen years later, Japanese factories were still quietly copying it.</p>
+    <p>This example arrived with no badge on the headstock and no serial number anywhere. That&rsquo;s not unusual. The factories supplying the global guitar trade in the 1970s operated on a white-label basis &mdash; bodies and necks produced in bulk, branded to order, or in many cases shipped out the door exactly as they were. Retailers, catalog companies, and small importers could put their own name on the headstock, or simply sell them as-is. This one appears to have taken the latter route.</p>
+    <p>The closest branded equivalent is the <strong>El Degas LP Special DC</strong> &mdash; a guitar confirmed to use identical tooling and construction, sold through Canadian importers during the same period. The connection isn&rsquo;t academic: a childhood friend owns one, acquired separately, and the two guitars are indistinguishable side by side. Same body, same neck profile, same hardware, same everything. Two guitars that left the same factory floor, ending up decades later in the hands of people who&rsquo;d known each other since childhood. There&rsquo;s something quietly satisfying about that.</p>
+    <p>El Degas instruments of this type are themselves difficult to pin to a single factory, with researchers pointing variously to FujiGen Gakki, Matsumoku, and Hoshino depending on the model and year. This guitar, however, tells its own story. It has a set neck &mdash; uncommon on white-label copies of this era, where bolt-on construction was the norm &mdash; along with a three-screw bell-shaped truss rod cover, perfectly round dot inlays, and clean mahogany construction throughout. That combination of features points toward <strong>Chushin Gakki</strong>, the Nagano-based factory later responsible for Japanese-market Jackson and Charvel production. Researchers identifying mystery LP copies have repeatedly flagged the three-screw bell TRC and set neck heel carve as Chushin signatures. The blank headstock was simply business as usual.</p>
+    <p>Whoever made it took the reference seriously. The double-cutaway body profile is faithful to the 1959&ndash;60 Gibson original, and the cherry finish &mdash; properly translucent over the mahogany grain &mdash; does exactly what a cherry finish should do. It has aged beautifully.</p>
+  </div>
+</div>
+
+<div class="media-section">
+  <p class="section-label">Audio &amp; Video</p>
+  <div class="media-placeholder">
+    Video and audio demos coming soon<br>
+    Subscribe to The Gear Cellar on YouTube to be notified
+  </div>
+</div>
+
+<div class="instrument-nav">
+  <a href="index.html#collection">&larr; Back to Collection</a>
+  <a href="index.html">The Gear Cellar Home</a>
+</div>
+
+</body>
+</html>
