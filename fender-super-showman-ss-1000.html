@@ -76,6 +76,12 @@
     .history-section, .media-section { padding: 36px 20px; }
     .instrument-nav { padding: 20px; flex-direction: column; gap: 16px; text-align: center; }
   }
+  .instrument-photo { cursor: zoom-in; }
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.93); align-items: center; justify-content: center; cursor: pointer; }
+  .lightbox.open { display: flex; }
+  .lightbox-img { max-width: 92vw; max-height: 92vh; object-fit: contain; display: block; cursor: default; }
+  .lightbox-close { position: absolute; top: 20px; right: 24px; background: none; border: 0.5px solid var(--rule); color: var(--muted); font-size: 20px; cursor: pointer; line-height: 1; padding: 6px 10px; font-family: var(--mono); transition: color 0.2s, border-color 0.2s; }
+  .lightbox-close:hover { color: var(--cream); border-color: var(--muted); }
 </style>
 </head>
 <body>
@@ -111,7 +117,7 @@
 </div>
 
 <div class="instrument-hero">
-  <div class="instrument-photo">
+  <div class="instrument-photo" onclick="openLightbox(this.querySelector('img').src,this.querySelector('img').alt)">
     <img src="fender-super-showman-ss-1000.jpeg" alt="Fender Super Showman SS-1000 preamplifier head in black tolex">
     <span class="photo-count">1 of 1 &mdash; more photos coming</span>
   </div>
@@ -166,5 +172,14 @@
   <a href="index.html">The Gear Cellar Home</a>
 </div>
 
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="event.stopPropagation();closeLightbox()">&#x2715;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+<script>
+function openLightbox(src,alt){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox-img').alt=alt||'';document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
 </body>
 </html>
